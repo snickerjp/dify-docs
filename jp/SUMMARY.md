@@ -36,7 +36,7 @@
 * [ワークフロー](guides/workflow/README.md)
   * [キーコンセプト](guides/workflow/key-concept.md)
   * [変数](guides/workflow/variables.md)
-  * [ノード説明](guides/workflow/node/README.md)
+  * [ノードの説明](guides/workflow/node/README.md)
     * [開始](guides/workflow/node/start.md)
     * [終了](guides/workflow/node/end.md)
     * [直接返信](guides/workflow/node/answer.md)
@@ -72,8 +72,14 @@
   * [クイック統合ツール](guides/tools/quick-tool-integration.md)
   * [高度統合ツール](guides/tools/advanced-tool-integration.md)
   * [ツールの配置](guides/tools/tool-configuration/README.md)
+    * [Google](guides/tools/tool-configuration/google.md)
+    * [Bing](guides/tools/tool-configuration/bing.md)
+    * [SearchApi](guides/tools/tool-configuration/searchapi.md)
     * [StableDiffusion](guides/tools/tool-configuration/stable-diffusion.md)
+    * [Dall-e](guides/tools/tool-configuration/dall-e.md)
+    * [Serper](guides/tools/tool-configuration/serper.md)
     * [SearXNG](guides/tools/tool-configuration/searxng.md)
+    * [Perplexity Search](guides/tools/tool-configuration/perplexity.md)
 * [アプリ公開](guides/application-publishing/README.md)
   * [シングルページWebアプリとして公開](guides/application-publishing/launch-your-webapp-quickly/README.md)
     * [Web アプリの設定](guides/application-publishing/launch-your-webapp-quickly/web-app-settings.md)
@@ -108,6 +114,7 @@
 
 * [サポートの求め](community/support.md)
 * [貢献者ガイド](community/contribution.md)
+* [ドキュメントへの貢献](community/docs-contribution.md)
 
 ## 開発 <a href="#development" id="development"></a>
 

@@ -74,8 +74,14 @@
   * [快速接入工具](guides/tools/quick-tool-integration.md)
   * [高级接入工具](guides/tools/advanced-tool-integration.md)
   * [工具配置](guides/tools/tool-configuration/README.md)
+    * [Google](guides/tools/tool-configuration/google.md)
+    * [Bing](guides/tools/tool-configuration/bing.md)
+    * [SearchApi](guides/tools/tool-configuration/searchapi.md)
     * [StableDiffusion](guides/tools/tool-configuration/stable-diffusion.md)
+    * [Dall-e](guides/tools/tool-configuration/dall-e.md)
     * [SearXNG](guides/tools/tool-configuration/searxng.md)
+    * [Serper](guides/tools/tool-configuration/serper.md)
+    * [Perplexity Search](guides/tools/tool-configuration/perplexity.md)
 * [发布](guides/application-publishing/README.md)
   * [发布为公开 Web 站点](guides/application-publishing/launch-your-webapp-quickly/README.md)
     * [Web 应用的设置](guides/application-publishing/launch-your-webapp-quickly/web-app-settings.md)
@@ -110,6 +116,7 @@
 
 * [寻求支持](community/support.md)
 * [成为贡献者](community/contribution.md)
+* [为 Dify 文档做出贡献](community/docs-contribution.md)
 
 ## 研发 <a href="#development" id="development"></a>
 
@@ -127,6 +134,7 @@
   * [使用全套开源工具构建 LLM 应用实战：在 Dify 调用 Baichuan 开源模型能力](learn-more/use-cases/practical-implementation-of-building-llm-applications-using-a-full-set-of-open-source-tools.md)
   * [手摸手教你把 Dify 接入微信生态](learn-more/use-cases/dify-on-wechat.md)
   * [使用Dify 和Twilio构建WhatsApp机器人](learn-more/use-cases/dify-on-whatsapp.md)
+  * [如何让 LLM 应用提供循序渐进的聊天体验？](learn-more/use-cases/how-to-make-llm-app-provide-a-progressive-chat-experience.md)
 * [扩展阅读](learn-more/extended-reading/README.md)
   * [什么是 LLMOps？](learn-more/extended-reading/what-is-llmops.md)
   * [检索增强生成（RAG）](learn-more/extended-reading/retrieval-augment/README.md)

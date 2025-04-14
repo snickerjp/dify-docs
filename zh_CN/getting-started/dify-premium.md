@@ -1,6 +1,6 @@
 # Dify Premium
 
-Dify Premium 是一款 [AWS AMI](https://docs.aws.amazon.com/zh\_cn/AWSEC2/latest/UserGuide/ec2-instances-and-amis.html) 产品，允许自定义品牌，并可作为 EC2 一键部署到你的 AWS VPC 上。前往 [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-t22mebxzwjhu6) 进行订阅并使用，它适合以下场景：
+Dify Premium 是一款 [AWS AMI](https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/ec2-instances-and-amis.html) 产品，允许自定义品牌，并可作为 EC2 一键部署到你的 AWS VPC 上。前往 [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-t22mebxzwjhu6) 进行订阅并使用，它适合以下场景：
 
 * 在中小型企业内，需在服务器上创建一个或多应用程序，并且关心数据私有化。
 * 你对 [Dify Cloud](https://docs.dify.ai/v/zh-hans/getting-started/cloud)订阅计划感兴趣，但所需的用例资源超出了[计划](https://dify.ai/pricing)内所提供的资源。
@@ -37,7 +37,7 @@ docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d
 2. 插件迁移
 3. 主项目升级
 
-### 1. 备份数据
+#### 1. 备份数据
 
 1.1 运行 `cd` 命令至你的 Dify 项目路径，新建备份分支。
 
@@ -55,7 +55,7 @@ docker compose down
 tar -cvf volumes-$(date +%s).tgz volumes
 ```
 
-### 2. 升级版本
+#### 2. 升级版本
 
 `v1.0.0` 支持通过 Docker Compose 部署。运行 `cd` 命令至你的 Dify 项目路径，运行以下命令升级 Dify 版本：
 
@@ -65,8 +65,8 @@ cd docker
 docker compose -f docker-compose.yaml up -d
 ```
 
-### 3. 工具迁移为插件
- 
+#### 3. 工具迁移为插件
+
 该步骤的目的：将此前社区版本所使用的工具及模型供应商，自动进行数据迁移并安装至新版本的插件环境中。
 
 1. 运行 docker ps 命令，查看 docker-api 容器 id 号。

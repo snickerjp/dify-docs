@@ -1,5 +1,13 @@
 # Environments
 
+{% hint style="warning" %}
+This document may be outdated. Please refer to the latest configuration files:
+
+- [docker-compose.yaml](https://github.com/langgenius/dify/blob/5f8d20b5b2bb51f19547467167b18d9c0f6ffbb8/docker/docker-compose.yaml)
+  
+- [.env.example](https://github.com/langgenius/dify/blob/5f8d20b5b2bb51f19547467167b18d9c0f6ffbb8/docker/.env.example)
+{% endhint %}
+
 ### Common Variables
 
 #### CONSOLE_API_URL

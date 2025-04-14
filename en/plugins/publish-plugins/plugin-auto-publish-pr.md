@@ -257,7 +257,7 @@ jobs:
 {% step %}
 #### Update manifest.yaml
 
-Ensure the `manifest.yaml` file correctly sets the following fields:
+Ensure those following fields are correctly set:
 
 ```yaml
 version: 0.0.x  # Version number

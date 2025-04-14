@@ -4,7 +4,7 @@
 
 Updating plugins that others are actively using can be tedious. Traditionally, you would need to modify code, bump versions, push changes, create branches, package files, and submit PRs manually - a repetitive process that slows down development.
 
-Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, letting you focus on what matters - building great plugins.
+Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, focusing on building great plugins.
 
 ### Concepts
 
@@ -71,7 +71,7 @@ To get started with auto-publishing, you will need two key components:
 * Value: Must be a Personal Access Token (PAT) with sufficient permissions
 * Permission: Ability to push branches to your forked repository and create PRs to the upstream repository
 
-**Automatically-Generated Parameters**
+#### Automatically-Generated Parameters
 
 Once set up, the workflow automatically handles these parameters:
 

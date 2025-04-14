@@ -4,7 +4,7 @@
 
 Updating plugins that others are actively using can be tedious. Traditionally, you would need to modify code, bump versions, push changes, create branches, package files, and submit PRs manually - a repetitive process that slows down development.
 
-Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, letting you focus on what matters - building great plugins.
+Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, letting you focus on building great plugins.
 
 ## Concepts
 
@@ -270,8 +270,7 @@ jobs:
 {% endstep %}
 {% step %}
 ### Update manifest.yaml
-Ensure the `manifest.yaml` file correctly sets the following fields:
-
+Ensure the `manifest.yaml` file includes these important fields with the correct values:
 ```yaml
 version: 0.0.x  # Version number
 author: your-github-username  # GitHub username/Author name

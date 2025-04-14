@@ -1,5 +1,13 @@
 # 環境変数の説明
 
+{% hint style="warning" %}
+このドキュメントは最新でない可能性があります。最新の構成ファイルをご参照ください：
+
+- [docker-compose.yaml](https://github.com/langgenius/dify/blob/5f8d20b5b2bb51f19547467167b18d9c0f6ffbb8/docker/docker-compose.yaml)
+
+- [.env.example](https://github.com/langgenius/dify/blob/5f8d20b5b2bb51f19547467167b18d9c0f6ffbb8/docker/.env.example)
+{% endhint %}
+
 ### 公共変数
 
 #### CONSOLE\_API\_URL

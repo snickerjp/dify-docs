@@ -1,5 +1,13 @@
 # 环境变量说明
 
+{% hint style="warning" %}
+本文档可能未及时更新，请优先参考最新的配置文件：
+
+- [docker-compose.yaml](https://github.com/langgenius/dify/blob/5f8d20b5b2bb51f19547467167b18d9c0f6ffbb8/docker/docker-compose.yaml)
+
+- [.env.example](https://github.com/langgenius/dify/blob/5f8d20b5b2bb51f19547467167b18d9c0f6ffbb8/docker/.env.example)
+{% endhint %}
+
 ### 公共变量
 
 #### CONSOLE\_API\_URL

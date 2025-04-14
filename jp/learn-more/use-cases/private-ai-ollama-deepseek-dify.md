@@ -8,25 +8,27 @@ Difyは、オープンソースのAIアプリケーション開発プラット�
 
 ### プライベートデプロイメントの利点：
 
-- **優れたパフォーマンス**: 商用モデルに匹敵する会話体験を提供します。
-- **隔離された環境**: 完全にオフラインで動作し、データ漏洩のリスクを排除します。
-- **完全なデータ制御**: データ資産の完全な所有権を保持し、コンプライアンスを確保できます。
+* **優れたパフォーマンス**: 商用モデルに匹敵する会話体験を提供します。
+* **隔離された環境**: 完全にオフラインで動作し、データ漏洩のリスクを排除します。
+* **完全なデータ制御**: データ資産の完全な所有権を保持し、コンプライアンスを確保できます。
 
----
+***
 
 ## 前提条件
 
 ### **ハードウェア要件：**
-- **CPU**: 2コア以上
-- **RAM/GPUメモリ**: 16GiB以上（推奨）
+
+* **CPU**: 2コア以上
+* **RAM/GPUメモリ**: 16GiB以上（推奨）
 
 ### **ソフトウェア要件：**
-- [Docker](https://www.docker.com/)
-- Docker Compose
-- [Ollama](https://ollama.com/)
-- [Dify Community Edition](https://github.com/langgenius/dify)
 
----
+* [Docker](https://www.docker.com/)
+* Docker Compose
+* [Ollama](https://ollama.com/)
+* [Dify Community Edition](https://github.com/langgenius/dify)
+
+***
 
 ## デプロイ手順
 
@@ -74,11 +76,7 @@ Difyプラットフォームの **Profile → Settings → Model Providers** に
 
 > 注：Model Providers の「DeepSeek」オプションはオンラインAPIサービスを指しますが、OllamaオプションはローカルにデプロイされたDeepSeekモデルに使用します。
 
-モデルを構成します。
-•	モデル名：デプロイしたモデル名（例：`deepseek-r1:7b`）を入力します。
-•	ベースURL：OllamaクライアントのローカルサービスURL（通常は `http://your_server_ip:11434`）を設定します。
-接続問題が発生した場合は、[よくある質問](https://docs.dify.ai/ja-jp/learn-more/use-cases/private-ai-ollama-deepseek-dify#id-1-docker-noer)をご参照ください。
-•	その他の設定：デフォルト値を保持します。[DeepSeekモデルの仕様](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B)によると、最大トークン長は32,768です。
+モデルを構成します。 • モデル名：デプロイしたモデル名（例：`deepseek-r1:7b`）を入力します。 • ベースURL：OllamaクライアントのローカルサービスURL（通常は `http://your_server_ip:11434`）を設定します。 接続問題が発生した場合は、[よくある質問](https://docs.dify.ai/ja-jp/learn-more/use-cases/private-ai-ollama-deepseek-dify#id-1-docker-noer)をご参照ください。 • その他の設定：デフォルト値を保持します。[DeepSeekモデルの仕様](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B)によると、最大トークン長は32,768です。
 
 ![](https://assets-docs.dify.ai/2025/01/6f3b53427e46786ba7d1374739344142.png)
 
@@ -104,17 +102,16 @@ Difyプラットフォームの **Profile → Settings → Model Providers** に
 
 > チャットフロー/ワークフローアプリケーションを使用すると、ドキュメント認識、画像処理、音声認識などのより複雑なAIソリューションを作成できます。詳細については、[ワークフローのドキュメント](https://docs.dify.ai/guides/workflow)をご覧ください。
 
-1.	Create Blank App をクリックし、Chatflow または Workflow を選択して、アプリケーションに名前を付けます。
+1. Create Blank App をクリックし、Chatflow または Workflow を選択して、アプリケーションに名前を付けます。
 
 ![](https://assets-docs.dify.ai/2025/01/cb8637be4dca5a0e684fd9a21df3711f.png)
 
-2.	LLMノードを追加し、Ollama の下にある `deepseek-r1:7b` モデルを選択し、`{{#sys.query#}}` 変数をシステムプロンプトに使用して、最初のノードに接続します。APIの問題が発生した場合は、[ロードバランシング](https://docs.dify.ai/guides/model-configuration/load-balancing)または[エラー処理](https://docs.dify.ai/guides/workflow/error-handling)ノードを使用して処理できます。
-
-3.	LLMノードを追加し、Ollamaフレームワークの下にあるdeepseek-r1:7bモデルを選択し、{{#sys.query#}}変数をシステムプロンプトに挿入して、最初のノードに接続します。APIの問題が発生した場合は、ロードバランシングまたはエラー処理ノードを使用して処理できます。
+2. LLMノードを追加し、Ollama の下にある `deepseek-r1:7b` モデルを選択し、`{{#sys.query#}}` 変数をシステムプロンプトに使用して、最初のノードに接続します。APIの問題が発生した場合は、[ロードバランシング](https://docs.dify.ai/guides/model-configuration/load-balancing)または[エラー処理](https://docs.dify.ai/guides/workflow/error-handling)ノードを使用して処理できます。
+3. LLMノードを追加し、Ollamaフレームワークの下にあるdeepseek-r1:7bモデルを選択し、\{{#sys.query#\}}変数をシステムプロンプトに挿入して、最初のノードに接続します。APIの問題が発生した場合は、ロードバランシングまたはエラー処理ノードを使用して処理できます。
 
 ![](https://assets-docs.dify.ai/2025/01/c21f076398eb09d773d3e543561293e6.png)
 
-4.	Endノードを追加して構成を完了します。クエリを入力してワークフローをテストします。応答が正しければ、セットアップは完了です。
+4. Endノードを追加して構成を完了します。クエリを入力してワークフローをテストします。応答が正しければ、セットアップは完了です。
 
 ![](https://assets-docs.dify.ai/2025/01/820c37c70cb029cba60ca289e8d6e89a.png)
 
@@ -145,8 +142,7 @@ Ollama が macOS アプリケーションとして実行されている場合、
     ```bash
     launchctl setenv OLLAMA_HOST "0.0.0.0"
     ```
-2.  Ollama アプリケーションを再起動します。
-
+2. Ollama アプリケーションを再起動します。
 3.  上記の手順が効果がない場合は、次の方法を試してください。
 
     問題は Docker 自体にあり、Docker ホストにアクセスする必要があります。`host.docker.internal` に接続する必要があります。したがって、サービス内で `localhost` を `host.docker.internal` に置き換えると、正常に動作します。
@@ -178,11 +174,11 @@ Ollama が systemd サービスとして実行されている場合、環境変�
 
 Windows では、Ollama はユーザーとシステムの環境変数を継承します。
 
-1.  まず、タスクバーで Ollama をクリックして終了します。
-2.  コントロールパネルからシステムの環境変数を編集します。
-3.  `OLLAMA_HOST`、`OLLAMA_MODELS` などのユーザーアカウントの新しい変数を作成または編集します。
-4.  [OK]/[適用] をクリックして保存します。
-5.  新しいターミナルウィンドウから `ollama` を実行します。
+1. まず、タスクバーで Ollama をクリックして終了します。
+2. コントロールパネルからシステムの環境変数を編集します。
+3. `OLLAMA_HOST`、`OLLAMA_MODELS` などのユーザーアカウントの新しい変数を作成または編集します。
+4. \[OK]/\[適用] をクリックして保存します。
+5. 新しいターミナルウィンドウから `ollama` を実行します。
 
 ### 2. Ollama サービスのポートとアドレスを変更する方法
 

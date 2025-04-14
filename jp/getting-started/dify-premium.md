@@ -39,7 +39,7 @@ docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d
 2. プラグインの移行
 3. メインプロジェクトのアップグレード
 
-### 1. データのバックアップ
+#### 1. データのバックアップ
 
 1.1 `cd` コマンドで Dify プロジェクトのパスに移動し、バックアップ用のブランチを作成します。
 
@@ -57,7 +57,7 @@ docker compose down
 tar -cvf volumes-$(date +%s).tgz volumes
 ```
 
-### 2. バージョンアップ
+#### 2. バージョンアップ
 
 `v1.0.0` は Docker Compose を使用してデプロイできます。`cd` コマンドで Dify プロジェクトのパスに移動し、以下のコマンドで Dify のバージョンをアップグレードします：
 
@@ -67,7 +67,7 @@ cd docker
 docker compose -f docker-compose.yaml up -d
 ```
 
-### 3. ツールの移行をプラグインに変換
+#### 3. ツールの移行をプラグインに変換
 
 このステップでは、以前のコミュニティ版で使用していたツールやモデルプロバイダを自動的にデータ移行し、新しいバージョンのプラグイン環境にインストールします。
 
@@ -100,6 +100,7 @@ poetry run flask install-plugins --workers=2
 ```
 
 このコマンドは、最新のコミュニティ版に必要なすべてのプラグインをダウンロードしてインストールします。ターミナルに `Install plugins completed.` と表示されたら、移行は完了です。
+
 </details>
 
 ## カスタマイズ

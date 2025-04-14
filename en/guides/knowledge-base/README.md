@@ -28,7 +28,7 @@ You only need to prepare text content, such as:
 
 By simply uploading files to the **Knowledge Base**, data processing is handled automatically.
 
-> If your team already has an independent knowledge base, you can use the [“Connect to an External Knowledge Base”](connect-external-knowledge.md) feature to establish its connection with Dify.
+> If your team already has an independent knowledge base, you can use the [“Connect to an External Knowledge Base”](connect-external-knowledge-base.md) feature to establish its connection with Dify.
 
 <figure><img src="https://assets-docs.dify.ai/2024/12/effc826d2584d5f2983cdcd746099bb6.png" alt=""><figcaption><p>Create a knowledge base</p></figcaption></figure>
 

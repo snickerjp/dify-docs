@@ -76,29 +76,32 @@ The **Knowledge Retrieval** node allows you to filter documents using metadata f
 
 #### Steps
 
-1. Select Filter Mode:
-    - **Disabled (Default):** No metadata filtering.
+1.  Select Filter Mode:
 
-    - **Automatic:** Filters auto-configure from query variables in the **Knowledge Retrieval** node.
+    * **Disabled (Default):** No metadata filtering.
+    * **Automatic:** Filters auto-configure from query variables in the **Knowledge Retrieval** node.
 
     > Note: Automatic Mode requires model selection for document retrieval.
 
-    ![model_selection](https://assets-docs.dify.ai/2025/03/fe387793ad9923660f9f9470aacff01b.png)
+    ![model\_selection](https://assets-docs.dify.ai/2025/03/fe387793ad9923660f9f9470aacff01b.png)
 
-    - **Manual:** Configure filters manually.
+    * **Manual:** Configure filters manually.
 
 ![Filter mode](https://assets-docs.dify.ai/2025/03/ec6329e265e035e3a0d6941c9313a19d.png)
 
-2. For Manual Mode, follow these steps:
+2.  For Manual Mode, follow these steps:
 
     1. Click **Conditions** to open the configuration panel.
 
     ![Conditions](https://assets-docs.dify.ai/2025/03/cd80d150f6f5646350b7ac8dfee46429.png)
 
-    2. Click **+Add Condition**:
-        - Select metadata fields within your chosen knowledge base from the dropdown list.
+    2.  Click **+Add Condition**:
+
+        * Select metadata fields within your chosen knowledge base from the dropdown list.
+
         > Note: When multiple knowledge bases are selected, only common metadata fields are shown in the list.
-        - Use the search box to find specific fields.
+
+        * Use the search box to find specific fields.
 
     ![Add Condition](https://assets-docs.dify.ai/2025/03/72678c4174f753f306378b748fbe6635.png)
 
@@ -108,159 +111,88 @@ The **Knowledge Retrieval** node allows you to filter documents using metadata f
 
     4. Configure filter conditions:
 
-    <table border="0" style="border-collapse: collapse; width: 100%;">
-    <tr style="background-color: #f5f5f5;">
-        <td width="15%">Field Type</td>
-        <td width="20%">Operator</td>
-        <td width="65%">Description and Examples</td>
-    </tr>
-    <tr>
-        <td rowspan="8">String</td>
-        <td>is</td>
-        <td>Exact match required. Example: <code>is "Published"</code> returns only documents marked exactly as “Published”.</td>
-    </tr>
-    <tr>
-        <td>is not</td>
-        <td>Excludes exact matches. Example: <code>is not "Draft"</code> returns all documents except those marked as “Draft”.</td>
-    </tr>
-    <tr>
-        <td>is empty</td>
-        <td>Returns documents where the field has no value.</td>
-    </tr>
-    <tr>
-        <td>is not empty</td>
-        <td>Returns documents where the field has any value.</td>
-    </tr>
-    <tr>
-        <td>contains</td>
-        <td>Matches partial text. Example: <code>contains "Report"</code> returns “Monthly Report”, “Annual Report”, etc.</td>
-    </tr>
-    <tr>
-        <td>not contains</td>
-        <td>Excludes documents containing specified text. Example: <code>not contains "Draft"</code> returns documents without “Draft” in the field.</td>
-    </tr>
-    <tr>
-        <td>starts with</td>
-        <td>Matches text at beginning. Example: <code>starts with "Doc"</code> returns “Doc1”, “Document”, etc.</td>
-    </tr>
-    <tr>
-        <td>ends with</td>
-        <td>Matches text at end. Example: <code>ends with "2024"</code> returns “Report 2024”, “Summary 2024”, etc.</td>
-    </tr>
-    <tr>
-        <td rowspan="8">Number</td>
-        <td>=</td>
-        <td>Exact number match. Example: <code>= 10</code> returns documents marked with exactly 10.</td>
-    </tr>
-    <tr>
-        <td>≠</td>
-        <td>Excludes specific number. Example: <code>≠ 5</code> returns all documents except those marked with 5.</td>
-    </tr>
-    <tr>
-        <td>></td>
-        <td>Greater than. Example: <code>> 100</code> returns documents with values above 100.</td>
-    </tr>
-    <tr>
-        <td><</td>
-        <td>Less than. Example: <code>< 50</code> returns documents with values below 50.</td>
-    </tr>
-    <tr>
-        <td>≥</td>
-        <td>Greater than or equal to. Example: <code>≥ 20</code> returns documents with values 20 or higher.</td>
-    </tr>
-    <tr>
-        <td>≤</td>
-        <td>Less than or equal to. Example: <code>≤ 200</code> returns documents with values 200 or lower.</td>
-    </tr>
-    <tr>
-        <td>is empty</td>
-        <td>Field has no value assigned. For example, <code>is empty</code> returns all documents where this field has no number assigned.</td>
-    </tr>
-    <tr>
-        <td>is not empty</td>
-        <td>Field has a value assigned. For example, <code>is not empty</code> returns all documents where this field has a number assigned.</td>
-    </tr>
-    <tr>
-        <td rowspan="5">Date</td>
-        <td>is</td>
-        <td>Exact date match. Example: <code>is "2024-01-01"</code> returns documents dated January 1, 2024.</td>
-    </tr>
-    <tr>
-        <td>before</td>
-        <td>Prior to date. Example: <code>before "2024-01-01"</code> returns documents dated before January 1, 2024.</td>
-    </tr>
-    <tr>
-        <td>after</td>
-        <td>After date. Example: <code>after "2024-01-01"</code> returns documents dated after January 1, 2024.</td>
-    </tr>
-    <tr>
-        <td>is empty</td>
-        <td>Returns documents with no date value.</td>
-    </tr>
-    <tr>
-        <td>is not empty</td>
-        <td>Returns documents with any date value.</td>
-    </tr>
-</table>
-    
-5. Add filter values:
+    | Field Type   | Operator                                                                                                                      | Description and Examples                                                                              |
+    | ------------ | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+    | String       | is                                                                                                                            | Exact match required. Example: `is "Published"` returns only documents marked exactly as “Published”. |
+    | is not       | Excludes exact matches. Example: `is not "Draft"` returns all documents except those marked as “Draft”.                       |                                                                                                       |
+    | is empty     | Returns documents where the field has no value.                                                                               |                                                                                                       |
+    | is not empty | Returns documents where the field has any value.                                                                              |                                                                                                       |
+    | contains     | Matches partial text. Example: `contains "Report"` returns “Monthly Report”, “Annual Report”, etc.                            |                                                                                                       |
+    | not contains | Excludes documents containing specified text. Example: `not contains "Draft"` returns documents without “Draft” in the field. |                                                                                                       |
+    | starts with  | Matches text at beginning. Example: `starts with "Doc"` returns “Doc1”, “Document”, etc.                                      |                                                                                                       |
+    | ends with    | Matches text at end. Example: `ends with "2024"` returns “Report 2024”, “Summary 2024”, etc.                                  |                                                                                                       |
+    | Number       | =                                                                                                                             | Exact number match. Example: `= 10` returns documents marked with exactly 10.                         |
+    | ≠            | Excludes specific number. Example: `≠ 5` returns all documents except those marked with 5.                                    |                                                                                                       |
+    | >            | Greater than. Example: `> 100` returns documents with values above 100.                                                       |                                                                                                       |
+    | <            | Less than. Example: `< 50` returns documents with values below 50.                                                            |                                                                                                       |
+    | ≥            | Greater than or equal to. Example: `≥ 20` returns documents with values 20 or higher.                                         |                                                                                                       |
+    | ≤            | Less than or equal to. Example: `≤ 200` returns documents with values 200 or lower.                                           |                                                                                                       |
+    | is empty     | Field has no value assigned. For example, `is empty` returns all documents where this field has no number assigned.           |                                                                                                       |
+    | is not empty | Field has a value assigned. For example, `is not empty` returns all documents where this field has a number assigned.         |                                                                                                       |
+    | Date         | is                                                                                                                            | Exact date match. Example: `is "2024-01-01"` returns documents dated January 1, 2024.                 |
+    | before       | Prior to date. Example: `before "2024-01-01"` returns documents dated before January 1, 2024.                                 |                                                                                                       |
+    | after        | After date. Example: `after "2024-01-01"` returns documents dated after January 1, 2024.                                      |                                                                                                       |
+    | is empty     | Returns documents with no date value.                                                                                         |                                                                                                       |
+    | is not empty | Returns documents with any date value.                                                                                        |                                                                                                       |
 
-    - **Variable:** Select from existing **Chatflow/Workflow** variables. 
+    5.  Add filter values:
 
-    ![Variable](https://assets-docs.dify.ai/2025/03/4c2c55ffcf0f72553fabdf23f86597d0.png)
+        * **Variable:** Select from existing **Chatflow/Workflow** variables.
 
-    - **Constant:** Enter specific values.
+        ![Variable](https://assets-docs.dify.ai/2025/03/4c2c55ffcf0f72553fabdf23f86597d0.png)
 
-    > Time-type fields can only be filtered by constants The date picker is for time-type fields.
+        * **Constant:** Enter specific values.
 
-    ![Date picker](https://assets-docs.dify.ai/2025/03/593da1575ddc995d938bd0cc3847cf3c.png)
+        > Time-type fields can only be filtered by constants The date picker is for time-type fields.
 
-{% hint style="warning" %}
-Filter values are case-sensitive and require exact matches. Example: a filter `starts with “App”` or `contains “App”` will match “Apple” but not “apple” or “APPLE”.
-{% endhint %}
+        ![Date picker](https://assets-docs.dify.ai/2025/03/593da1575ddc995d938bd0cc3847cf3c.png)
 
-6. Set logic operators:
-    - `AND`: Match all conditions
-    - `OR`: Match any condition
+    {% hint style="warning" %}
+    Filter values are case-sensitive and require exact matches. Example: a filter `starts with “App”` or `contains “App”` will match “Apple” but not “apple” or “APPLE”.
+    {% endhint %}
 
-![Logic](https://assets-docs.dify.ai/2025/03/822dac015308dc5c01768afc0697c1ad.png)
+    6. Set logic operators:
+       * `AND`: Match all conditions
+       * `OR`: Match any condition
 
-7. Click outside the panel to save your settings.
+    ![Logic](https://assets-docs.dify.ai/2025/03/822dac015308dc5c01768afc0697c1ad.png)
 
-#### Chatbot
+    7. Click outside the panel to save your settings.
 
-Access **Metadata Filtering** below **Knowledge** (bottom-left). Configuration steps are the same as in **Chatflow/Workflow**.
+    **Chatbot**
 
-![Chatbot](https://assets-docs.dify.ai/2025/03/9d9a64bde687a686f24fd99d6f193c57.png)
+    Access **Metadata Filtering** below **Knowledge** (bottom-left). Configuration steps are the same as in **Chatflow/Workflow**.
 
-### View Linked Applications in the Knowledge Base
+    ![Chatbot](https://assets-docs.dify.ai/2025/03/9d9a64bde687a686f24fd99d6f193c57.png)
 
-On the left side of the knowledge base, you can see all linked Apps. Hover over the circular icon to view the list of all linked apps. Click the jump button on the right to quickly browser them.
+    #### View Linked Applications in the Knowledge Base
 
-<figure><img src="https://assets-docs.dify.ai/2024/12/28899b9b0eba8996f364fb74e5b94c7f.png" alt=""><figcaption><p>Viewing the linked Apps</p></figcaption></figure>
+    On the left side of the knowledge base, you can see all linked Apps. Hover over the circular icon to view the list of all linked apps. Click the jump button on the right to quickly browser them.
 
-### Frequently Asked Questions
+    <figure><img src="https://assets-docs.dify.ai/2024/12/28899b9b0eba8996f364fb74e5b94c7f.png" alt=""><figcaption><p>Viewing the linked Apps</p></figcaption></figure>
 
-1. **How should I choose Rerank settings in multi-recall mode?**
+    #### Frequently Asked Questions
 
-If users know the exact information or terminology, you can use keyword search for precise matching. In that case, set **“Keywords” to 1** under Weight Settings.
+    1. **How should I choose Rerank settings in multi-recall mode?**
 
-If the knowledge base doesn’t contain the exact terms or if a cross-lingual query is involved, we recommend setting **“Semantic” to 1** under Weight Settings.
+    If users know the exact information or terminology, you can use keyword search for precise matching. In that case, set **“Keywords” to 1** under Weight Settings.
 
-If you are familiar with real user queries and want to adjust the ratio of semantics to keywords, they can manually tweak the ratio under **Weight Settings**.
+    If the knowledge base doesn’t contain the exact terms or if a cross-lingual query is involved, we recommend setting **“Semantic” to 1** under Weight Settings.
 
-If the knowledge base is complex, making simple semantic or keyword matches insufficient—and you need highly accurate answers and are willing to pay more—consider using a **Rerank Model** for content retrieval.
+    If you are familiar with real user queries and want to adjust the ratio of semantics to keywords, they can manually tweak the ratio under **Weight Settings**.
 
-2. **What should I do if I encounter issues finding the “Weight Score” or the requirement to configure a Rerank model?**
+    If the knowledge base is complex, making simple semantic or keyword matches insufficient—and you need highly accurate answers and are willing to pay more—consider using a **Rerank Model** for content retrieval.
 
-Here's how the knowledge base retrieval method affects Multi-path Retrieval:
+    2. **What should I do if I encounter issues finding the “Weight Score” or the requirement to configure a Rerank model?**
 
-<figure><img src="../../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
+    Here's how the knowledge base retrieval method affects Multi-path Retrieval:
 
-3. **What should I do if I cannot adjust the “Weight Score” when referencing multiple knowledge bases and an error message appears?**
+    <figure><img src="../../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
 
-This issue occurs because the embedding models used in the multiple referenced knowledge bases are inconsistent, prompting this notification to avoid conflicts in retrieval content. It is advisable to set and enable the Rerank model in the "Model Provider" or unify the retrieval settings of the knowledge bases.
+    3. **What should I do if I cannot adjust the “Weight Score” when referencing multiple knowledge bases and an error message appears?**
 
-4. **Why can't I find the “Weight Score” option in multi-recall mode, and only see the Rerank model?**
+    This issue occurs because the embedding models used in the multiple referenced knowledge bases are inconsistent, prompting this notification to avoid conflicts in retrieval content. It is advisable to set and enable the Rerank model in the "Model Provider" or unify the retrieval settings of the knowledge bases.
 
-Please check whether your knowledge base is using the “Economical” index mode. If so, switch it to the “High Quality” index mode.
+    4. **Why can't I find the “Weight Score” option in multi-recall mode, and only see the Rerank model?**
+
+    Please check whether your knowledge base is using the “Economical” index mode. If so, switch it to the “High Quality” index mode.

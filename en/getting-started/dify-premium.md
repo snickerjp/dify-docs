@@ -37,7 +37,7 @@ The upgrade process involves the following steps:
 2. Migrate plugins
 3. Upgrade the main dify project
 
-### 1. Backup Data
+#### 1. Backup Data
 
 1.1 Execute the `cd` command to navigate to your Dify project directory and create a backup branch.
 
@@ -55,7 +55,7 @@ docker compose down
 tar -cvf volumes-$(date +%s).tgz volumes
 ```
 
-### 2. Upgrade the Version
+#### 2. Upgrade the Version
 
 `v1.0.0` supports deployment via Docker Compose. Navigate to your Dify project path and run the following commands to upgrade to the Dify version:
 
@@ -65,11 +65,11 @@ cd docker
 docker compose -f docker-compose.yaml up -d
 ```
 
-### 3. Migrate Tools to Plugins
+#### 3. Migrate Tools to Plugins
 
 The purpose of this step is to automatically migrate the tools and model vendors previously used in the Community Edition and install them into the new plugin environment.
 
-1.	Run the docker ps command to check the docker-api container ID.
+1. Run the docker ps command to check the docker-api container ID.
 
 Example:
 
@@ -98,6 +98,7 @@ poetry run flask install-plugins --workers=2
 ```
 
 This command will download and install all necessary plugins into the latest Community Edition. When the terminal shows `Install plugins completed.`, the migration is complete.
+
 </details>
 
 ## Customizing

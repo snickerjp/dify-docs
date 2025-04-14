@@ -1,16 +1,16 @@
 # Publish Plugins Automatically
 
-## Background
+### Background
 
 Updating plugins that others are actively using can be tedious. Traditionally, you would need to modify code, bump versions, push changes, create branches, package files, and submit PRs manually - a repetitive process that slows down development.
 
-Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, letting you focus on building great plugins.
+Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, letting you focus on what matters - building great plugins.
 
-## Concepts
+### Concepts
 
-### GitHub Actions
+#### GitHub Actions
 
-GitHub Actions automates your development tasks in GitHub. 
+GitHub Actions automates your development tasks in GitHub.
 
 **How it works**: When triggered (e.g., by a code push), it runs your workflow in a cloud-based virtual machine, handling everything from build to deployment automatically.
 
@@ -18,35 +18,27 @@ GitHub Actions automates your development tasks in GitHub.
 
 **Limits**:
 
-- Public repositories: Unlimited
+* Public repositories: Unlimited
+* Private repositories: 2000 minutes per month
 
-- Private repositories: 2000 minutes per month
-
-### Plugin Auto-PR
+#### Plugin Auto-PR
 
 **How it works**:
 
 1. Workflow triggers when you push code to the main branch of your plugin source repository
-
 2. Workflow reads plugin information from the `manifest.yaml` file
-
 3. Automatically packages the plugin as a `.difypkg` file
-
 4. Pushes the packaged file to your forked `dify-plugins` repository
-
 5. Creates a new branch and commits changes
-
 6. Automatically creates a PR to merge into the upstream repository
 
-## Prerequisites
+### Prerequisites
 
-### Repository
+#### Repository
 
-- You already have your own plugin source code repository (e.g., `your-name/plugin-source`)
-
-- You already have your own forked plugin repository (e.g., `your-name/dify-plugins`)
-
-- Your forked repository already has the plugin directory structure:
+* You already have your own plugin source code repository (e.g., `your-name/plugin-source`)
+* You already have your own forked plugin repository (e.g., `your-name/dify-plugins`)
+* Your forked repository already has the plugin directory structure:
 
 ```
 dify-plugins/
@@ -54,72 +46,65 @@ dify-plugins/
     └── plugin-name
 ```
 
-### Permission
+#### Permission
 
 This workflow requires appropriate permissions to function:
 
-- You need to create a GitHub Personal Access Token (PAT) with sufficient permissions
+* You need to create a GitHub Personal Access Token (PAT) with sufficient permissions
+* The PAT must have permission to push code to your forked repository
+* The PAT must have permission to create PRs to the upstream repository
 
-- The PAT must have permission to push code to your forked repository
+### Parameters and Configuration
 
-- The PAT must have permission to create PRs to the upstream repository
-
-## Parameters and Configuration
-
-### Setup Requirements
+#### Setup Requirements
 
 To get started with auto-publishing, you will need two key components:
 
 **manifest.yaml file**: This file drives the automation process:
 
-- `name`: Your plugin’s name (affects package and branch names)
+* `name`: Your plugin’s name (affects package and branch names)
+* `version`: Semantic version number (increment with each release)
+* `author`: Your GitHub username (determines repository paths)
 
-- `version`: Semantic version number (increment with each release)
+**PLUGIN\_ACTION Secret**: You need to add this secret to your plugin source repository:
 
-- `author`: Your GitHub username (determines repository paths)
+* Value: Must be a Personal Access Token (PAT) with sufficient permissions
+* Permission: Ability to push branches to your forked repository and create PRs to the upstream repository
 
-**PLUGIN_ACTION Secret**: You need to add this secret to your plugin source repository:
-
-- Value: Must be a Personal Access Token (PAT) with sufficient permissions
-
-- Permission: Ability to push branches to your forked repository and create PRs to the upstream repository
-
-#### Automatically-Generated Parameters
+**Automatically-Generated Parameters**
 
 Once set up, the workflow automatically handles these parameters:
 
-- GitHub username: Read from the `author` field in `manifest.yaml`
+* GitHub username: Read from the `author` field in `manifest.yaml`
+* Author folder name: Consistent with the `author` field
+* Plugin name: Read from the `name` field in `manifest.yaml`
+* Branch name: `bump-{plugin-name}-plugin-{version}`
+* Package filename: `{plugin-name}-{version}.difypkg`
+* PR title and content: Automatically generated based on plugin name and version
 
-- Author folder name: Consistent with the `author` field
-
-- Plugin name: Read from the `name` field in `manifest.yaml`
-
-- Branch name: `bump-{plugin-name}-plugin-{version}`
-
-- Package filename: `{plugin-name}-{version}.difypkg`
-
-- PR title and content: Automatically generated based on plugin name and version
-
-## Step-by-Step Guide
+### Step-by-Step Guide
 
 {% stepper %}
 {% step %}
-### Prepare Repositories
+#### Prepare Repositories
+
 Ensure you have forked the official `dify-plugins` repository and have your own plugin source repository.
 {% endstep %}
+
 {% step %}
-### Configure Secret
+#### Configure Secret
 
 Navigate to your plugin source repository, click **Settings > Secrets and variables > Actions > New repository secret**, and create a GitHub Secret:
 
-- Name: `PLUGIN_ACTION`
-
-- Value: GitHub Personal Access Token (PAT) with write permissions to the target repository (`your-name/dify-plugins`)
+* Name: `PLUGIN_ACTION`
+* Value: GitHub Personal Access Token (PAT) with write permissions to the target repository (`your-name/dify-plugins`)
 
 ![Create Secrets](https://assets-docs.dify.ai/2025/04/8abd72b677dd24752910c304c76f1c26.png)
 {% endstep %}
+
 {% step %}
-### Create Workflow File
+#### Create Workflow File
+
 Create a `.github/workflows/` directory in your repository, create a file named `plugin-publish.yml` in this directory, and copy the following content into the file:
 
 ```yaml
@@ -268,9 +253,12 @@ jobs:
           ls -R
 ```
 {% endstep %}
+
 {% step %}
-### Update manifest.yaml
-Ensure the `manifest.yaml` file includes these important fields with the correct values:
+#### Update manifest.yaml
+
+Ensure the `manifest.yaml` file correctly sets the following fields:
+
 ```yaml
 version: 0.0.x  # Version number
 author: your-github-username  # GitHub username/Author name
@@ -279,48 +267,40 @@ name: your-plugin-name  # Plugin name
 {% endstep %}
 {% endstepper %}
 
-## Usage Guide
+### Usage Guide
 
-### First-time Setup
+#### First-time Setup
 
 When setting up the auto-publish workflow for the first time, complete these steps:
 
 1. Ensure you have forked the official `dify-plugins` repository
-
 2. Ensure your plugin source repository structure is correct
-
 3. Set up the `PLUGIN_ACTION Secret` in your plugin source repository
-
 4. Create the workflow file `.github/workflows/plugin-publish.yml`
-
 5. Ensure the `name` and `author` fields in the `manifest.yaml` file are correctly configured
 
-### Subsequent Update
+#### Subsequent Update
 
 To publish new versions after setup:
 
 1. Modify the code
-
 2. Update the `version` field in `manifest.yaml`
 
 ![Release](https://assets-docs.dify.ai/2025/04/9eed2b9110e91e18008b399e58198f03.png)
 
 3. Push all changes to the main branch
-
 4. Wait for GitHub Actions to complete packaging, branch creation, and PR submission
 
-## Outcome
+### Outcome
 
 When you push code to the main branch of your plugin source repository, GitHub Actions will automatically execute the publishing process:
 
-- Package the plugin in `{plugin-name}-{version}.difypkg` format
-
-- Push the packaged file to the target repository
-
-- Create a PR to merge into the fork repository
+* Package the plugin in `{plugin-name}-{version}.difypkg` format
+* Push the packaged file to the target repository
+* Create a PR to merge into the fork repository
 
 ![Outcome](https://assets-docs.dify.ai/2025/04/60d5de910c6ce2482c67ddec3320311f.png)
 
-## Example Repository
+### Example Repository
 
 See [example repository](https://github.com/Yevanchen/exa-in-dify) to understand configuration and best practices.

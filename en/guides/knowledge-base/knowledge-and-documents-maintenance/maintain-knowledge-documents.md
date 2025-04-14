@@ -51,7 +51,7 @@ You can quickly view all enabled or disabled documents using the filter.
 
 <figure><img src="https://assets-docs.dify.ai/2025/01/47ef07319175a102bfd1692dcc6cac9b.png" alt=""><figcaption><p>Filter text chunks</p></figcaption></figure>
 
-Different [chunking modes](../create-knowledge-and-upload-documents/2.-choose-a-chunk-mode.md) correspond to different text chunking preview methods:
+Different [chunking modes](../create-knowledge-and-upload-documents/chunking-and-cleaning-text.md) correspond to different text chunking preview methods:
 
 {% tabs %}
 {% tab title="General Mode" %}
@@ -235,6 +235,6 @@ Go to **Chunk Settings**, adjust the settings, and click **Save & Process** to s
 
 ***
 
-### Metadata 
+### Metadata
 
-For more details on metadata, see *[Metadata](https://docs.dify.ai/guides/knowledge-base/metadata)*.
+For more details on metadata, see [_Metadata_](https://docs.dify.ai/guides/knowledge-base/metadata).

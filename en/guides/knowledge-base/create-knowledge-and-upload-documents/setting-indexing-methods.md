@@ -14,17 +14,17 @@ The knowledge base offers two indexing methods: **High-Quality** and **Economica
 
 {% tabs %}
 {% tab title="High-Quality" %}
-#### High Quality
+**High Quality**
 
 In High-Quality Mode, the Embedding model converts text chunks into numerical vectors, enabling efficient compression and storage of large volumes of textual information. **This allows for more precise matching between user queries and text.**
 
-Once the text chunks are vectorized and stored in the database, an effective retrieval method is required to fetch the chunks that match user queries. The High-Quality indexing method offers three retrieval settings: vector retrieval, full-text retrieval, and hybrid retrieval. For more details on retrieval settings, please check ["Retrieval Settings"](3.-select-the-indexing-method-and-retrieval-setting.md#id-4-retrieval-settings).
+Once the text chunks are vectorized and stored in the database, an effective retrieval method is required to fetch the chunks that match user queries. The High-Quality indexing method offers three retrieval settings: vector retrieval, full-text retrieval, and hybrid retrieval. For more details on retrieval settings, please check ["Retrieval Settings"](setting-indexing-methods.md#id-4-retrieval-settings).
 
 After selecting **High Quality** mode, the indexing method for the knowledge base cannot be downgraded to **Economical** mode later. If you need to switch, it is recommended to create a new knowledge base and select the desired indexing method.
 
 <figure><img src="https://assets-docs.dify.ai/2024/12/51442c8fcd05479616a3dd8279a4853a.png" alt="" width="563"><figcaption><p>High Quality Indexing Mode</p></figcaption></figure>
 
-#### Enable Q\&A Mode (Optional, Community Edition Only)
+**Enable Q\&A Mode (Optional, Community Edition Only)**
 
 When this mode is enabled, the system segments the uploaded text and automatically generates Q\&A pairs for each segment after summarizing its content.
 
@@ -34,7 +34,7 @@ This approach is particularly effective because the text in FAQ documents **is o
 
 > The **Q to Q** strategy makes the matching between questions and answers clearer and better supports scenarios with high-frequency or highly similar questions.
 
-<figure><img src="https://assets-docs.dify.ai/2024/12/70960a237d4f5eaed2dbf46a2cca2bf7.png" alt=""><figcaption><p>Q&A Chunk</p></figcaption></figure>
+<figure><img src="https://assets-docs.dify.ai/2024/12/70960a237d4f5eaed2dbf46a2cca2bf7.png" alt=""><figcaption><p>Q&#x26;A Chunk</p></figcaption></figure>
 
 When a user asks a question, the system identifies the most similar question and returns the corresponding chunk as the answer. This approach is more precise, as it directly matches the user’s query, helping them retrieve the exact information they need.
 
@@ -42,9 +42,9 @@ When a user asks a question, the system identifies the most similar question and
 {% endtab %}
 
 {% tab title="Economical" %}
-#### Economical
+**Economical**
 
-Using 10 keywords per chunk for retrieval, no tokens are consumed at the expense of reduced retrieval accuracy. For the retrieved blocks, only the inverted index method is provided to select the most relevant blocks. For more details, please refer to [Inverted Index](3.-select-the-indexing-method-and-retrieval-setting.md#inverted-index).
+Using 10 keywords per chunk for retrieval, no tokens are consumed at the expense of reduced retrieval accuracy. For the retrieved blocks, only the inverted index method is provided to select the most relevant blocks. For more details, please refer to [Inverted Index](setting-indexing-methods.md#inverted-index).
 
 If the performance of the economical indexing method does not meet your expectations, you can upgrade to the High-Quality indexing method in the Knowledge settings page.
 

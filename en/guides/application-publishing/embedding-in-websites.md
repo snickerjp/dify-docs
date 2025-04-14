@@ -132,5 +132,4 @@ window.difyChatbotConfig = {
 
 Note: When using the embed.js script to create an iframe, each input value will be processed—compressed using GZIP and encoded in base64—before being appended to the URL.
 
-For example, the URL with processed input values will look like this:
-`http://localhost/chatbot/{token}?name=H4sIAKUlmWYA%2FwWAIQ0AAACDsl7gLuiv2PQEUNAuqQUAAAA%3D`
+For example, the URL with processed input values will look like this: `http://localhost/chatbot/{token}?name=H4sIAKUlmWYA%2FwWAIQ0AAACDsl7gLuiv2PQEUNAuqQUAAAA%3D`

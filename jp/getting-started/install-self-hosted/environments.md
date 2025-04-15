@@ -294,6 +294,7 @@ dockerイメージまたはdocker-composeによる起動時にのみ有効です
     * `couchbase`
     * `oceanbase`
     * `tablestore`
+    * `lindorm`
 
 *   WEAVIATE\_ENDPOINT
 
@@ -457,6 +458,18 @@ dockerイメージまたはdocker-composeによる起動時にのみ有効です
 *   TABLESTORE\_ACCESS\_KEY\_SECRET
 
     Tablestoreのアクセスキー。
+
+*   LINDORM\_URL
+
+    LINDORM の検索エンジンアドレスは、[コンソール](https://lindorm.console.aliyun.com/)から取得できます。
+
+*   LINDORM\_USERNAME
+
+    LINDORM のユーザー名
+
+*   LINDORM\_PASSWORD
+
+    LINDORM アクセスパスワード
 
 #### ナレッジベース設定
 

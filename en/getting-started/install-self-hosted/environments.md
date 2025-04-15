@@ -294,6 +294,7 @@ Used to store uploaded data set files, team/tenant encryption keys, and other fi
     - `couchbase`
     - `oceanbase`
     - `tablestore`
+    - `lindorm`
 
 - WEAVIATE_ENDPOINT
 
@@ -464,6 +465,18 @@ Used to store uploaded data set files, team/tenant encryption keys, and other fi
 - TABLESTORE_ACCESS_KEY_SECRET
 
   The accessKey secret for the instance name
+
+- LINDORM\_URL
+
+  The URL of LINDORM search engine，you can get it from [the console](https://lindorm.console.aliyun.com/)
+
+- LINDORM\_USERNAME
+
+  The username of lindorm search engine
+
+- LINDORM\_PASSWORD
+
+  The password of lindorm search engine
 
 #### Knowledge Configuration
 

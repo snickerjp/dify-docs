@@ -279,6 +279,7 @@ Flask 调试模式，开启可在接口输出 trace 信息，方便调试。
     * `couchbase`
     * `oceanbase`
     * `tablestore`
+    * `lindorm`
 
 *   WEAVIATE\_ENDPOINT
 
@@ -446,6 +447,19 @@ Flask 调试模式，开启可在接口输出 trace 信息，方便调试。
 *   TABLESTORE\_ACCESS\_KEY\_SECRET
 
     Tablestore 访问密钥。
+
+*   LINDORM\_URL
+
+    LINDORM 搜索引擎地址，可从[控制台](https://lindorm.console.aliyun.com/) 获得。
+
+*   LINDORM\_USERNAME
+
+    LINDORM 用户名
+
+*   LINDORM\_PASSWORD
+
+    LINDORM 访问密码
+
 
 #### 知识库配置
 

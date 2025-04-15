@@ -23,11 +23,11 @@ Model 模型插件使 Dify 平台能够调用该模型供应商下的所有 LLM�
 ```bash
 - Anthropic
     - llm
-        claude-3-5-sonnet-20240620 
+        claude-3-5-sonnet-20240620
         claude-3-haiku-20240307
-        claude-3-opus-20240229 
-        claude-3-sonnet-20240229 
-        claude-instant-1.2 
+        claude-3-opus-20240229
+        claude-3-sonnet-20240229
+        claude-instant-1.2
         claude-instant-1
 ```
 
@@ -64,5 +64,5 @@ Model 模型插件使 Dify 平台能够调用该模型供应商下的所有 LLM�
 请参考以下顺序阅读文档，了解如何开发一个模型插件。
 
 1. [创建模型供应商](create-model-providers.md)
-2. 接入[预定义](../../../../guides/model-configuration/predefined-model.md) / [自定义](customizable-model.md)模型
+2. 接入[预定义](integrate-the-predefined-model.md) / [自定义](customizable-model.md)模型
 3. [调试插件](../../debug-plugin.md)

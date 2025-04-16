@@ -277,7 +277,7 @@ name: your-plugin-name  # Plugin name
 2. 确保你的插件源码仓库结构正确
 3. 在插件源码仓库中设置 `PLUGIN_ACTION Secret`
 4. 创建工作流文件 `.github/workflows/plugin-publish.yml`
-5. 确保 `manifest.yaml` 文件中的 `name` 和 `author` 字段正确配置。
+5. 确保 `manifest.yaml` 文件中的 `name` 和 `author` 字段正确配置
 
 #### 后续更新流程
 

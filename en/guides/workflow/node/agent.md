@@ -73,3 +73,11 @@ After choosing the Agent strategy, the configuration panel will display the rele
 During execution, the Agent node generates detailed logs. You can see overall node execution information—including inputs and outputs, token usage, time spent, and status. Click Details to view the output from each round of Agent strategy execution.
 
 <figure><img src="../../../.gitbook/assets/en-1-9-6.png" alt=""><figcaption></figcaption></figure>
+
+## Memory
+
+Enabling the **Memory** toggle empowers the Agent to retain and recall conversation context. By adjusting the **Window Size**, you can control how many previous conversation messages the Agent can “remember”. This allows the Agent to understand and reference earlier exchanges, delivering coherent and contextually relevant responses that enhance multi-turn dialogue experiences.
+
+For example, when users employ pronouns (such as “it”, “this”, or “they”) in subsequent messages, an Agent with Memory enabled can understand what these pronouns refer to from previous context without requiring users to restate complete information.
+
+{% embed url="https://assets-docs.dify.ai/2025/04/1801b96763eb8f22f1e2158645897885.mp4" %}

@@ -192,7 +192,7 @@ class BasicAgentAgentStrategy(AgentStrategy):
         params = BasicParams(**parameters)
 ```
 
-### 2.3 Invoking the Model
+#### 2.3 Invoking the Model
 
 In an Agent Strategy Plugin, **invoking the model** is central to the workflow. You can invoke an LLM efficiently using `session.model.llm.invoke()` from the SDK, handling text generation, dialogue, and so forth.
 
@@ -225,7 +225,7 @@ This code achieves the following functionality: after a user inputs a command, t
 
 ![Request parameters for generating tools](https://assets-docs.dify.ai/2025/01/01e32c2d77150213c7c929b3cceb4dae.png)
 
-### 2.4 Adding Memory to the Model
+#### 2.4 Adding Memory to the Model
 
 Adding **Memory** to your Agent plugin allows the model to remember previous conversations, making interactions more natural and effective. With memory enabled, the model can maintain context and provide more relevant responses.
 
@@ -313,7 +313,7 @@ After implementing **Memory**, the model can respond based on conversation histo
 
 ![Outcome](https://assets-docs.dify.ai/2025/04/6bdd3d2c6a455ae8e463bd6abab5c3a4.png)
 
-### 2.5 Handling a Tool
+#### 2.5 Handling a Tool
 
 After specifying the tool parameters, the Agent Strategy Plugin must actually call these tools. Use `session.tool.invoke()` to make those requests. 
 
@@ -355,7 +355,7 @@ With this in place, your Agent Strategy Plugin can automatically perform **Funct
 
 ![Tool Invocation](https://assets-docs.dify.ai/2025/01/80e5de8acc2b0ed00524e490fd611ff5.png)
 
-### 2.6 Creating Logs
+#### 2.6 Creating Logs
 
 Often, multiple steps are necessary to complete a complex task in an **Agent Strategy Plugin**. It's crucial for developers to track each step's results, analyze the decision process, and optimize strategy. Using `create_log_message` and `finish_log_message` from the SDK, you can log real-time states before and after calls, aiding in quick problem diagnosis.
 

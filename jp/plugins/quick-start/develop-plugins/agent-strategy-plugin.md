@@ -25,41 +25,51 @@ dify plugin init
 
 表示される指示に従い、必要な情報を入力します。以下のコードのコメントを参考に設定してください。
 
-```
-➜  Dify Plugins Developing dify plugin init
+```bash
+➜ ./dify-plugin-darwin-arm64 plugin init                                                                                                                                 ─╯
 Edit profile of the plugin
-Plugin name (press Enter to next step): # プラグインの名前を入力
-Author (press Enter to next step): Author name # プラグインの作者を入力
-Description (press Enter to next step): Description # プラグインの説明を入力
+Plugin name (press Enter to next step): # プラグイン名を入力
+Author (press Enter to next step): # プラグイン作者を入力
+Description (press Enter to next step): # プラグインの説明を入力
 ---
-Select the language you want to use for plugin development, and press Enter to con
+Select the language you want to use for plugin development, and press Enter to continue,
 BTW, you need Python 3.12+ to develop the Plugin if you choose Python.
 -> python # Python環境を選択
   go (not supported yet)
 ---
-Based on the ability you want to extend, we have divided the Plugin into four type
+Based on the ability you want to extend, we have divided the Plugin into four types: Tool, Model, Extension, and Agent Strategy.
 
-- Tool: It's a tool provider, but not only limited to tools, you can implement an 
+- Tool: It's a tool provider, but not only limited to tools, you can implement an endpoint there, for example, you need both Sending Message and Receiving Message if you are
 - Model: Just a model provider, extending others is not allowed.
-- Extension: Other times, you may only need a simple http service to extend the fu
+- Extension: Other times, you may only need a simple http service to extend the functionalities, Extension is the right choice for you.
 - Agent Strategy: Implement your own logics here, just by focusing on Agent itself
 
-What's more, we have provided the template for you, you can choose one of them b
+What's more, we have provided the template for you, you can choose one of them below:
   tool
--> agent-strategy # エージェント戦略テンプレートを選択
+-> agent-strategy # Agent戦略テンプレートを選択
   llm
   text-embedding
 ---
-Configure the permissions of the plugin, use up and down to navigate, tab to sel
+Configure the permissions of the plugin, use up and down to navigate, tab to select, after selection, press enter to finish
 Backwards Invocation:
 Tools:
     Enabled: [✔]  You can invoke tools inside Dify if it's enabled # デフォルトで有効
 Models:
     Enabled: [✔]  You can invoke models inside Dify if it's enabled # デフォルトで有効
     LLM: [✔]  You can invoke LLM models inside Dify if it's enabled # デフォルトで有効
-    Text Embedding: [✘]  You can invoke text embedding models inside Dify if it'
+  → Text Embedding: [✘]  You can invoke text embedding models inside Dify if it's enabled
     Rerank: [✘]  You can invoke rerank models inside Dify if it's enabled
-...
+    TTS: [✘]  You can invoke TTS models inside Dify if it's enabled
+    Speech2Text: [✘]  You can invoke speech2text models inside Dify if it's enabled
+    Moderation: [✘]  You can invoke moderation models inside Dify if it's enabled
+Apps:
+    Enabled: [✘]  Ability to invoke apps like BasicChat/ChatFlow/Agent/Workflow etc.
+Resources:
+Storage:
+    Enabled: [✘]  Persistence storage for the plugin
+    Size: N/A  The maximum size of the storage
+Endpoints:
+    Enabled: [✘]  Ability to register endpoints
 ```
 
 プラグインテンプレートを初期化すると、プラグインの開発に必要なすべてのリソースを含むコードフォルダが生成されます。エージェント戦略プラグインのコード構造を理解することで、開発プロセスがスムーズになります。
@@ -178,7 +188,7 @@ class BasicAgentAgentStrategy(AgentStrategy):
         params = BasicParams(**parameters)
 ```
 
-#### 3. モデルの呼び出し
+#### 2.3 モデルの呼び出し
 
 エージェント戦略プラグインでは、**モデルの呼び出し**が中心的な処理ロジックの1つです。SDKが提供する `session.model.llm.invoke()` メソッドを使用すると、LLMモデルを効率的に呼び出して、テキスト生成や対話処理などの機能を実現できます。
 
@@ -211,7 +221,95 @@ def invoke(
 
 ![生成されたツールのリクエストパラメータ](https://assets-docs.dify.ai/2025/01/01e32c2d77150213c7c929b3cceb4dae.png)
 
-#### 4. ツールの呼び出し
+#### 2.4 モデルへのメモリ機能の追加
+
+Agentプラグインを使用してモデルを呼び出す際、メモリ機能を追加することで対話体験が大幅に向上します。メモリ機能により、モデルは完全な対話コンテキストを理解し、一貫性のある対話と正確なツール呼び出しを実現できます。
+
+実装手順：
+
+1. メモリ機能の設定
+
+AgentプラグインのYAML設定ファイル`strategies/agent.yaml`に`history-messages`機能を追加します：
+
+```yaml
+identity:
+  name: basic_agent  # Agent戦略名
+  author: novice     # 作者
+  label:
+    en_US: BasicAgent  # 英語ラベル
+description:
+  en_US: BasicAgent    # 英語説明
+features:
+  - history-messages   # 履歴メッセージ機能を有効化
+...
+```
+
+2. メモリ設定の有効化
+
+プラグイン設定ファイルを修正して再起動後、ノード設定画面に**メモリ**トグルが表示されます。右側のトグルボタンをクリックしてメモリ機能を有効にします。
+
+<p align="center">
+  <img src="https://assets-docs.dify.ai/2025/04/4dc804a2f93a030d3a94ef1465b2e359.png" width="400" alt="Memory">
+</p>
+
+有効化後、**ウィンドウサイズ**スライダーでメモリウィンドウを調整できます。これはモデルが「記憶」できる過去の対話の量を決定します。
+
+3. 履歴メッセージのデバッグ
+
+以下のコードを追加して、履歴メッセージの内容を確認します：
+
+```python
+class BasicAgentAgentStrategy(AgentStrategy):
+    def _invoke(self, parameters: dict[str, Any]) -> Generator[AgentInvokeMessage]:
+        params = BasicParams(**parameters)
+        print(f"history_messages: {params.model.history_prompt_messages}")
+        ...
+```
+
+![History messages](https://assets-docs.dify.ai/2025/04/cb11fae7981dae431966f83fa99f1dfb.png)
+
+コンソールには以下のような出力が表示されます：
+
+```
+history_messages: []
+history_messages: [UserPromptMessage(role=<PromptMessageRole.USER: 'user'>, content='hello, my name is novice', name=None), AssistantPromptMessage(role=<PromptMessageRole.ASSISTANT: 'assistant'>, content='Hello, Novice! How can I assist you today?', name=None, tool_calls=[])]
+```
+
+4. 履歴メッセージのモデル呼び出しへの統合
+
+最後に、モデル呼び出しコードを修正して、履歴メッセージを現在のクエリに連結します：
+
+```python
+class BasicAgentAgentStrategy(AgentStrategy):
+    def _invoke(self, parameters: dict[str, Any]) -> Generator[AgentInvokeMessage]:
+        params = BasicParams(**parameters)
+
+        chunks: Generator[LLMResultChunk, None, None] | LLMResult = (
+            self.session.model.llm.invoke(
+                model_config=LLMModelConfig(**params.model.model_dump(mode="json")),
+                # 履歴メッセージを追加
+                prompt_messages=params.model.history_prompt_messages
+                + [UserPromptMessage(content=params.query)],
+                tools=[
+                    self._convert_tool_to_prompt_message_tool(tool)
+                    for tool in params.tools
+                ],
+                stop=params.model.completion_params.get("stop", [])
+                if params.model.completion_params
+                else [],
+                stream=True,
+            )
+        )
+        ...
+```
+
+5. 効果の検証
+
+メモリ機能を追加後、モデルは履歴に基づいて応答できるようになります。以下の例では、モデルは以前の対話で言及されたユーザー名を正しく記憶し、対話の一貫性を実現しています。
+
+![Outcome](https://assets-docs.dify.ai/2025/04/6bdd3d2c6a455ae8e463bd6abab5c3a4.png)
+
+#### 2.5 ツールの呼び出し
 
 ツールパラメータを設定した後、エージェント戦略プラグインに実際にツールを呼び出す機能を追加する必要があります。これは、SDKの `session.tool.invoke()` 関数を使用して行えます。
 
@@ -255,7 +353,7 @@ for tool_call_id, tool_call_name, tool_call_args in tool_calls:
 
 ![ツール呼び出し](https://assets-docs.dify.ai/2025/01/80e5de8acc2b0ed00524e490fd611ff5.png)
 
-#### 5. ログの作成
+#### 2.6 ログの作成
 
 **エージェント戦略プラグイン**では、複雑なタスクを完了するために、通常、複数回の操作が必要です。各操作の実行結果を記録することは、開発者にとって非常に重要です。Agentの実行プロセスを追跡し、各ステップの意思決定の根拠を分析することで、戦略の効果をより適切に評価し、最適化できます。
 

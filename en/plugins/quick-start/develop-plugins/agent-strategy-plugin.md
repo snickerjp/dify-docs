@@ -2,7 +2,7 @@
 
 An **Agent Strategy Plugin** helps an LLM carry out tasks like reasoning or decision-making, including choosing and calling tools, as well as handling results. This allows the system to address problems more autonomously.
 
-Below, you’ll see how to develop a plugin that supports **Function Calling** to automatically fetch the current time.
+Below, you'll see how to develop a plugin that supports **Function Calling** to automatically fetch the current time.
 
 ### Prerequisites
 
@@ -21,50 +21,60 @@ For details on preparing the plugin development tool, see [Initializing the Deve
 
 Run the following command to create a development template for your Agent plugin:
 
-```
+```bash
 dify plugin init
 ```
 
 Follow the on-screen prompts and refer to the sample comments for guidance. 
 
 ```bash
-➜  Dify Plugins Developing dify plugin init
+➜ ./dify-plugin-darwin-arm64 plugin init                                                                                                                                 ─╯
 Edit profile of the plugin
-Plugin name (press Enter to next step): # 填写插件的名称
-Author (press Enter to next step): Author name # 填写插件作者
-Description (press Enter to next step): Description # 填写插件的描述
+Plugin name (press Enter to next step): # Enter the plugin name
+Author (press Enter to next step): # Enter the plugin author
+Description (press Enter to next step): # Enter the plugin description
 ---
-Select the language you want to use for plugin development, and press Enter to con
+Select the language you want to use for plugin development, and press Enter to continue,
 BTW, you need Python 3.12+ to develop the Plugin if you choose Python.
--> python # 选择 Python 环境
+-> python # Select Python environment
   go (not supported yet)
 ---
-Based on the ability you want to extend, we have divided the Plugin into four type
+Based on the ability you want to extend, we have divided the Plugin into four types: Tool, Model, Extension, and Agent Strategy.
 
-- Tool: It's a tool provider, but not only limited to tools, you can implement an 
+- Tool: It's a tool provider, but not only limited to tools, you can implement an endpoint there, for example, you need both Sending Message and Receiving Message if you are
 - Model: Just a model provider, extending others is not allowed.
-- Extension: Other times, you may only need a simple http service to extend the fu
+- Extension: Other times, you may only need a simple http service to extend the functionalities, Extension is the right choice for you.
 - Agent Strategy: Implement your own logics here, just by focusing on Agent itself
 
-What's more, we have provided the template for you, you can choose one of them b
+What's more, we have provided the template for you, you can choose one of them below:
   tool
--> agent-strategy # 选择 Agent 策略模板
+-> agent-strategy # Select Agent strategy template
   llm
   text-embedding
 ---
-Configure the permissions of the plugin, use up and down to navigate, tab to sel
+Configure the permissions of the plugin, use up and down to navigate, tab to select, after selection, press enter to finish
 Backwards Invocation:
 Tools:
-    Enabled: [✔]  You can invoke tools inside Dify if it's enabled # 默认开启
+    Enabled: [✔]  You can invoke tools inside Dify if it's enabled # Enabled by default
 Models:
-    Enabled: [✔]  You can invoke models inside Dify if it's enabled # 默认开启
-    LLM: [✔]  You can invoke LLM models inside Dify if it's enabled # 默认开启
-    Text Embedding: [✘]  You can invoke text embedding models inside Dify if it'
+    Enabled: [✔]  You can invoke models inside Dify if it's enabled # Enabled by default
+    LLM: [✔]  You can invoke LLM models inside Dify if it's enabled # Enabled by default
+  → Text Embedding: [✘]  You can invoke text embedding models inside Dify if it's enabled
     Rerank: [✘]  You can invoke rerank models inside Dify if it's enabled
-...
+    TTS: [✘]  You can invoke TTS models inside Dify if it's enabled
+    Speech2Text: [✘]  You can invoke speech2text models inside Dify if it's enabled
+    Moderation: [✘]  You can invoke moderation models inside Dify if it's enabled
+Apps:
+    Enabled: [✘]  Ability to invoke apps like BasicChat/ChatFlow/Agent/Workflow etc.
+Resources:
+Storage:
+    Enabled: [✘]  Persistence storage for the plugin
+    Size: N/A  The maximum size of the storage
+Endpoints:
+    Enabled: [✘]  Ability to register endpoints
 ```
 
-After initialization, you’ll get a folder containing all the resources needed for plugin development. Familiarizing yourself with the overall structure of an Agent Strategy Plugin will streamline the development process:
+After initialization, you'll get a folder containing all the resources needed for plugin development. Familiarizing yourself with the overall structure of an Agent Strategy Plugin will streamline the development process:
 
 ```text
 ├── GUIDE.md               # User guide and documentation
@@ -95,12 +105,12 @@ Agent Strategy Plugin development revolves around two files:
 
 #### 2.1 Defining Parameters
 
-To build an Agent plugin, start by specifying the necessary parameters in `strategies/basic_agent.yaml`. These parameters define the plugin’s core features, such as calling an LLM or using tools.
+To build an Agent plugin, start by specifying the necessary parameters in `strategies/basic_agent.yaml`. These parameters define the plugin's core features, such as calling an LLM or using tools.
 
 We recommend including the following four parameters first:
 
 1. **model**: The large language model to call (e.g., GPT-4, GPT-4o-mini).  
-2. **tools**: A list of tools that enhance your plugin’s functionality.  
+2. **tools**: A list of tools that enhance your plugin's functionality.  
 3. **query**: The user input or prompt content sent to the model.  
 4. **maximum_iterations**: The maximum iteration count to prevent excessive computation.
 
@@ -152,7 +162,7 @@ extra:
     source: strategies/basic_agent.py
 ```
 
-Once you’ve configured these parameters, the plugin will automatically generate a user-friendly interface so you can easily manage them:
+Once you've configured these parameters, the plugin will automatically generate a user-friendly interface so you can easily manage them:
 
 ![Agent Strategy Plugin UI](https://assets-docs.dify.ai/2025/01/d011e2eba4c37f07a9564067ba787df8.png)
 
@@ -182,16 +192,16 @@ class BasicAgentAgentStrategy(AgentStrategy):
         params = BasicParams(**parameters)
 ```
 
-### 3. Invoking the Model
+### 2.3 Invoking the Model
 
 In an Agent Strategy Plugin, **invoking the model** is central to the workflow. You can invoke an LLM efficiently using `session.model.llm.invoke()` from the SDK, handling text generation, dialogue, and so forth.
 
-If you want the LLM **handle tools**, ensure it outputs structured parameters to match a tool’s interface. In other words, the LLM must produce input arguments that the tool can accept based on the user’s instructions.
+If you want the LLM **handle tools**, ensure it outputs structured parameters to match a tool's interface. In other words, the LLM must produce input arguments that the tool can accept based on the user's instructions.
 
 Construct the following parameters:
 
 * model
-* prompt\_messages
+* prompt_messages
 * tools
 * stop
 * stream
@@ -215,7 +225,95 @@ This code achieves the following functionality: after a user inputs a command, t
 
 ![Request parameters for generating tools](https://assets-docs.dify.ai/2025/01/01e32c2d77150213c7c929b3cceb4dae.png)
 
-### 4. Handle a Tool
+### 2.4 Adding Memory to the Model
+
+Adding **Memory** to your Agent plugin allows the model to remember previous conversations, making interactions more natural and effective. With memory enabled, the model can maintain context and provide more relevant responses.
+
+Steps:
+
+1. Configure Memory Functionality
+
+Add the `history-messages` feature to the Agent plugin’s YAML configuration file `strategies/agent.yaml`:
+
+```yaml
+identity:
+  name: basic_agent  # Agent strategy name
+  author: novice     # Author
+  label:
+    en_US: BasicAgent  # English label
+description:
+  en_US: BasicAgent    # English description
+features:
+  - history-messages   # Enable history messages feature
+...
+```
+
+2. Enable Memory Settings
+
+After modifying the plugin configuration and restarting, you'll see the **Memory** toggle in the node configuration interface. Click the toggle button on the right to enable memory functionality.
+
+<p align="center">
+  <img src="https://assets-docs.dify.ai/2025/04/4dc804a2f93a030d3a94ef1465b2e359.png" width="400" alt="Memory">
+</p>
+
+Once enabled, you can adjust the memory window size using the slider, which determines how many previous conversation turns the model can “remember”.
+
+3. Debug History Messages
+
+Add the following code to inspect history message contents:
+
+```python
+class BasicAgentAgentStrategy(AgentStrategy):
+    def _invoke(self, parameters: dict[str, Any]) -> Generator[AgentInvokeMessage]:
+        params = BasicParams(**parameters)
+        print(f"history_messages: {params.model.history_prompt_messages}")
+        ...
+```
+
+![History messages](https://assets-docs.dify.ai/2025/04/cb11fae7981dae431966f83fa99f1dfb.png)
+
+The console will display output similar to:
+
+```
+history_messages: []
+history_messages: [UserPromptMessage(role=<PromptMessageRole.USER: 'user'>, content='hello, my name is novice', name=None), AssistantPromptMessage(role=<PromptMessageRole.ASSISTANT: 'assistant'>, content='Hello, Novice! How can I assist you today?', name=None, tool_calls=[])]
+```
+
+4. Integrate History Messages into Model Calls
+
+Finally, modify the model invocation code to concatenate history messages with the current query:
+
+```python
+class BasicAgentAgentStrategy(AgentStrategy):
+    def _invoke(self, parameters: dict[str, Any]) -> Generator[AgentInvokeMessage]:
+        params = BasicParams(**parameters)
+
+        chunks: Generator[LLMResultChunk, None, None] | LLMResult = (
+            self.session.model.llm.invoke(
+                model_config=LLMModelConfig(**params.model.model_dump(mode="json")),
+                # Add history messages
+                prompt_messages=params.model.history_prompt_messages
+                + [UserPromptMessage(content=params.query)],
+                tools=[
+                    self._convert_tool_to_prompt_message_tool(tool)
+                    for tool in params.tools
+                ],
+                stop=params.model.completion_params.get("stop", [])
+                if params.model.completion_params
+                else [],
+                stream=True,
+            )
+        )
+        ...
+```
+
+5. Check the Outcome
+
+After implementing memory, the model can respond based on conversation history. In the example below, the model successfully remembers the user’s name mentioned in previous conversation.
+
+![Outcome](https://assets-docs.dify.ai/2025/04/6bdd3d2c6a455ae8e463bd6abab5c3a4.png)
+
+### 2.5 Handling a Tool
 
 After specifying the tool parameters, the Agent Strategy Plugin must actually call these tools. Use `session.tool.invoke()` to make those requests. 
 
@@ -237,7 +335,7 @@ Example code for method definition:
     ) -> Generator[ToolInvokeMessage, None, None]:...
 ```
 
-If you’d like the LLM itself to generate the parameters needed for tool calls, you can do so by combining the model’s output with your tool-calling code.
+If you'd like the LLM itself to generate the parameters needed for tool calls, you can do so by combining the model's output with your tool-calling code.
 
 ```python
 tool_instances = (
@@ -257,13 +355,13 @@ With this in place, your Agent Strategy Plugin can automatically perform **Funct
 
 ![Tool Invocation](https://assets-docs.dify.ai/2025/01/80e5de8acc2b0ed00524e490fd611ff5.png)
 
-### 5. Creating Logs
+### 2.6 Creating Logs
 
-Often, multiple steps are necessary to complete a complex task in an **Agent Strategy Plugin**. It’s crucial for developers to track each step’s results, analyze the decision process, and optimize strategy. Using `create_log_message` and `finish_log_message` from the SDK, you can log real-time states before and after calls, aiding in quick problem diagnosis.
+Often, multiple steps are necessary to complete a complex task in an **Agent Strategy Plugin**. It's crucial for developers to track each step's results, analyze the decision process, and optimize strategy. Using `create_log_message` and `finish_log_message` from the SDK, you can log real-time states before and after calls, aiding in quick problem diagnosis.
 
 For example:
-- Log a “starting model call” message before calling the model, clarifying the task’s execution progress.  
-- Log a “call succeeded” message once the model responds, ensuring the model’s output can be traced end to end.
+- Log a "starting model call" message before calling the model, clarifying the task's execution progress.  
+- Log a "call succeeded" message once the model responds, ensuring the model's output can be traced end to end.
 
 ```python
 model_log = self.create_log_message(
@@ -318,7 +416,7 @@ model_log = self.create_log_message(
 yield model_log
 ```
 
-#### Sample code for agent-plugin functions
+### Sample code for agent-plugin functions
 
 {% tabs %}
 {% tab title="Invoke Model" %}
@@ -1036,7 +1134,7 @@ class BasicAgentAgentStrategy(AgentStrategy):
 
 ### 3. Debugging the Plugin
 
-After finalizing the plugin’s declaration file and implementation code, run `python -m main` in the plugin directory to restart it. Next, confirm the plugin runs correctly. Dify offers remote debugging—go to [“Plugin Management”](https://console-plugin.dify.dev/plugins) to obtain your debug key and remote server address.
+After finalizing the plugin's declaration file and implementation code, run `python -m main` in the plugin directory to restart it. Next, confirm the plugin runs correctly. Dify offers remote debugging—go to ["Plugin Management"](https://console-plugin.dify.dev/plugins) to obtain your debug key and remote server address.
 
 <figure><img src="https://assets-docs.dify.ai/2024/12/053415ef127f1f4d6dd85dd3ae79626a.png" alt=""><figcaption></figcaption></figure>
 
@@ -1056,7 +1154,7 @@ Then run:
 python -m main
 ```
 
-You’ll see the plugin installed in your Workspace, and team members can also access it.
+You'll see the plugin installed in your Workspace, and team members can also access it.
 
 <figure><img src="https://assets-docs.dify.ai/2025/01/c82ec0202e5bf914b36e06c796398dd6.png" alt=""><figcaption><p>Browser Plugins</p></figcaption></figure>
 
@@ -1072,7 +1170,7 @@ dify plugin package ./basic_agent/
 
 A file named `google.difypkg` (for example) appears in your current folder—this is your final plugin package.
 
-**Congratulations!** You’ve fully developed, tested, and packaged your Agent Strategy Plugin.
+**Congratulations!** You've fully developed, tested, and packaged your Agent Strategy Plugin.
 
 ### Publishing the Plugin (Optional)
 

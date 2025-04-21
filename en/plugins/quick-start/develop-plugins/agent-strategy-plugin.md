@@ -260,7 +260,7 @@ Once enabled, you can adjust the memory window size using the slider, which dete
 
 3. Debug History Messages
 
-Add the following code to inspect history message contents:
+Add the following code to check the history messages:
 
 ```python
 class BasicAgentAgentStrategy(AgentStrategy):
@@ -272,7 +272,7 @@ class BasicAgentAgentStrategy(AgentStrategy):
 
 ![History messages](https://assets-docs.dify.ai/2025/04/cb11fae7981dae431966f83fa99f1dfb.png)
 
-The console will display output similar to:
+The console will display an output similar to:
 
 ```
 history_messages: []
@@ -281,7 +281,7 @@ history_messages: [UserPromptMessage(role=<PromptMessageRole.USER: 'user'>, cont
 
 4. Integrate History Messages into Model Calls
 
-Modify the model invocation code to concatenate history messages with the current query:
+Update the model call to incorporate conversation history with the current query:
 
 ```python
 class BasicAgentAgentStrategy(AgentStrategy):
@@ -309,7 +309,7 @@ class BasicAgentAgentStrategy(AgentStrategy):
 
 5. Check the Outcome
 
-After implementing memory, the model can respond based on conversation history. In the example below, the model successfully remembers the user’s name mentioned in previous conversation.
+After implementing **Memory**, the model can respond based on conversation history. In the example below, the model successfully remembers the user’s name mentioned in previous conversation.
 
 ![Outcome](https://assets-docs.dify.ai/2025/04/6bdd3d2c6a455ae8e463bd6abab5c3a4.png)
 

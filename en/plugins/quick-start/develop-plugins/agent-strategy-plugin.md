@@ -250,7 +250,7 @@ features:
 
 2. Enable Memory Settings
 
-After modifying the plugin configuration and restarting, you'll see the **Memory** toggle in the node configuration interface. Click the toggle button on the right to enable memory functionality.
+After modifying the plugin configuration and restarting, you will see the **Memory** toggle. Click the toggle button on the right to enable memory.
 
 <p align="center">
   <img src="https://assets-docs.dify.ai/2025/04/4dc804a2f93a030d3a94ef1465b2e359.png" width="400" alt="Memory">
@@ -281,7 +281,7 @@ history_messages: [UserPromptMessage(role=<PromptMessageRole.USER: 'user'>, cont
 
 4. Integrate History Messages into Model Calls
 
-Finally, modify the model invocation code to concatenate history messages with the current query:
+Modify the model invocation code to concatenate history messages with the current query:
 
 ```python
 class BasicAgentAgentStrategy(AgentStrategy):

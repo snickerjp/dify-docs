@@ -16,7 +16,7 @@ Dify offers two ways to create structured outputs:
 
 ### Method 1: Tool Parameters
 
-Define your output structure directly in tool parameters. See **[How to Use JSON Schema Output in Dify?](https://docs.dify.ai/learn-more/extended-reading/how-to-use-json-schema-in-dify)**.
+Define your output structure directly in tool parameters. See **[How to Use JSON Schema Output in Dify?](https://docs.dify.ai/learn-more/extended-reading/how-to-use-json-schema-in-dify)**
 
 ### Method 2: JSON Schema Editor
 
@@ -24,7 +24,7 @@ Use the built-in editor in LLM nodes. See **[LLM](https://docs.dify.ai/guides/wo
 
 ## Error Handling
 
-**What Can Go Wrong?**
+**What Can Go Wrong**
 
 When you are working with the JSON Schema Editor, you might run into a few common challenges:
 

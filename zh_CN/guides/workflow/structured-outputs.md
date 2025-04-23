@@ -20,7 +20,7 @@
 
 ### 方式一：直接定义工具参数
 
-请参阅 **[如何使用 JSON Schema 让 LLM 输出遵循结构化格式的内容？](https://docs.dify.ai/zh-hans/learn-more/extended-reading/how-to-use-json-schema-in-dify)**。
+请参阅 **[如何使用 JSON Schema 让 LLM 输出遵循结构化格式的内容？](https://docs.dify.ai/zh-hans/learn-more/extended-reading/how-to-use-json-schema-in-dify)**
 
 ### 方式二：使用 LLM 节点中的 JSON Schema 编辑器
 
@@ -54,6 +54,6 @@
 
     1.  **配置失败时重试**：在节点内开启 **失败时重试** 功能并配置最大重试次数与重试间隔，以减少解析错误的影响。
 
-    2.  **配置异常分支**：在节点内的 **异常处理** 中配置 **失败分支。**当节点发生异常时，将自动执行失败分支。
+    2.  **配置异常分支**：在节点内的 **异常处理** 中配置 **失败分支**。当节点发生异常时，将自动执行失败分支。
 
 详情请参阅[异常处理](https://docs.dify.ai/zh-hans/guides/workflow/error-handling)。

@@ -280,6 +280,7 @@ Flask 调试模式，开启可在接口输出 trace 信息，方便调试。
     * `oceanbase`
     * `tablestore`
     * `lindorm`
+    * `tencent`
 
 *   WEAVIATE\_ENDPOINT
 
@@ -460,6 +461,38 @@ Flask 调试模式，开启可在接口输出 trace 信息，方便调试。
 
     LINDORM 访问密码
 
+*   TENCENT\_VECTOR\_DB\_URL
+
+    腾讯云向量数据库访问地址，[控制台](https://console.cloud.tencent.com/vdb) 获得。
+
+*   TENCENT\_VECTOR\_DB\_API_KEY
+
+    向量数据库服务端的API密钥（密码），用于进行身份认证。 [密钥管理](https://cloud.tencent.com/document/product/1709/95108)。
+
+*   TENCENT\_VECTOR\_DB\_USERNAME
+
+    向量数据库账号，默认root， [账号与权限管理](https://cloud.tencent.com/document/product/1709/115833)。
+
+*   TENCENT\_VECTOR\_DB\_TIMEOUT
+
+    设置默认请求超时时间。
+
+*   TENCENT\_VECTOR\_DB\_DATABASE
+
+    数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，一个实例可以创建多个 Database。
+    [新建Database](https://cloud.tencent.com/document/product/1709/95822)。
+
+*   TENCENT\_VECTOR\_DB\_SHARD
+
+    指定分片数（Shards）。
+
+*   TENCENT\_VECTOR\_DB\_REPLICAS
+
+    指定副本数（Replica）。
+
+*   TENCENT\_VECTOR\_DB\_ENABLE\_HYBRID\_SEARCH
+
+    指定是否开启HybridSearch。[稀疏向量文档](https://cloud.tencent.com/document/product/1709/110110)。
 
 #### 知识库配置
 

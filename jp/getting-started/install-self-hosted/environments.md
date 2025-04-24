@@ -295,6 +295,7 @@ dockerイメージまたはdocker-composeによる起動時にのみ有効です
     * `oceanbase`
     * `tablestore`
     * `lindorm`
+    * `tencent`
 
 *   WEAVIATE\_ENDPOINT
 
@@ -470,6 +471,38 @@ dockerイメージまたはdocker-composeによる起動時にのみ有効です
 *   LINDORM\_PASSWORD
 
     LINDORM アクセスパスワード
+
+*   TENCENT\_VECTOR\_DB\_URL
+
+    腾讯云ベクトルデータベースのアクセスアドレスは、[コンソール](https://console.cloud.tencent.com/vdb)から取得できます。
+
+*   TENCENT\_VECTOR\_DB\_API_KEY
+    ベクトルデータベースサーバーのAPIキー（パスワード）は、認証を行うために使用されます。[キー管理](https://cloud.tencent.com/document/product/1709/95108)。
+
+*   TENCENT\_VECTOR\_DB\_USERNAME
+
+    ベクトルデータベースのアカウントは、デフォルトでrootです。[アカウントと権限管理](https://cloud.tencent.com/document/product/1709/115833)。
+
+*   TENCENT\_VECTOR\_DB\_TIMEOUT
+
+    デフォルトのリクエストタイムアウト時間を設定します。
+
+*   TENCENT\_VECTOR\_DB\_DATABASE
+
+    データベース（Database）とは、データ構造に基づいてデータを組織化し、保存および管理する倉庫であり、一つのインスタンスで複数のDatabaseを作成することができます。
+    [新しいDatabaseを作成します](https://cloud.tencent.com/document/product/1709/95822)。
+
+*   TENCENT\_VECTOR\_DB\_SHARD
+
+    シャード数を指定します。
+
+*   TENCENT\_VECTOR\_DB\_REPLICAS
+
+    レプリカ数を指定します。
+
+*   TENCENT\_VECTOR\_DB\_ENABLE\_HYBRID\_SEARCH
+
+    HybridSearchを有効にするかどうかを指定します。[スパースベクトル文書](https://cloud.tencent.com/document/product/1709/110110)。
 
 #### ナレッジベース設定
 

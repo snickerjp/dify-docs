@@ -295,6 +295,7 @@ Used to store uploaded data set files, team/tenant encryption keys, and other fi
     - `oceanbase`
     - `tablestore`
     - `lindorm`
+    - `tencent`
 
 - WEAVIATE_ENDPOINT
 
@@ -477,6 +478,38 @@ Used to store uploaded data set files, team/tenant encryption keys, and other fi
 - LINDORM\_PASSWORD
 
   The password of lindorm search engine
+
+- TENCENT\_VECTOR\_DB\_URL
+
+    The access address for Tencent Cloud VectorDB can be obtained from [the console](https://console.cloud.tencent.com/vdb).
+
+- TENCENT\_VECTOR\_DB\_API_KEY
+
+    The API key (password) for the VectorDB server is used for identity authentication. [Key Management](https://cloud.tencent.com/document/product/1709/95108).
+
+- TENCENT\_VECTOR\_DB\_USERNAME
+
+    The vector database account, default 'root'. [Account Management](https://cloud.tencent.com/document/product/1709/115833).
+
+- TENCENT\_VECTOR\_DB\_TIMEOUT
+
+    Set the default request timeout duration.
+
+- TENCENT\_VECTOR\_DB\_DATABASE
+
+    Set up a Database for storing data. [Create Database](https://cloud.tencent.com/document/product/1709/95822)。
+
+- TENCENT\_VECTOR\_DB\_SHARD
+
+    Specify the number of shards.
+
+- TENCENT\_VECTOR\_DB\_REPLICAS
+
+    Specify the number of replicas.
+
+- TENCENT\_VECTOR\_DB\_ENABLE\_HYBRID\_SEARCH
+
+    Specify whether to enable HybridSearch. [Sparse Vector Documentation](https://cloud.tencent.com/document/product/1709/110110)。
 
 #### Knowledge Configuration
 
